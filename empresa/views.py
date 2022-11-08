@@ -38,4 +38,20 @@ def nova_empresa(request):
   #     if nicho not in [i[0] for i in Empresa.choices_nicho_mercado]:
     #        return redirect('/home/nova_empresa')
 
-        return HttpResponse(tecnologias)
+        empresa = Empresa(logo=logo,
+                        nome=nome,
+                        email=email,
+                        cidade=cidade,
+                        endereco=endereco,
+                        nicho_mercado=nicho,
+                        caracteristica_empresa=caracteristicas)
+        empresa.save()
+        empresa.tecnologias.add(*tecnologias)
+        empresa.save()
+        messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
+        empresa.save()
+        empresa.tecnologias.add(*tecnologias)
+        empresa.save()
+
+        messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
+        return redirect('/home/nova_empresa')
