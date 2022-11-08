@@ -1,9 +1,9 @@
 from django.db import models
 
 class Empresa(models.Model):
-    choices_nicho_mercado (
-        ('M', 'Marketing')
-        ('N', 'Nutrição')
+    choices_nicho_mercado = (
+        ('M', 'Marketing'),
+        ('N', 'Nutrição'),
         ('D', 'Design')
     )
     nome = models.CharField(max_length=30)
@@ -11,4 +11,4 @@ class Empresa(models.Model):
     cidade = models.CharField(max_length=30)
     endereco = models.CharField(max_length=30)
     caracteristica_empresa = models.TextField()
-    nicho_mercado = models.CharField(max_length=30)
+    nicho_mercado = models.CharField(max_length=3, choices=choices_nicho_mercado)
