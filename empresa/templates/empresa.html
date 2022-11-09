@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load filtro %}
 
 {% block 'head' %}
 
@@ -54,14 +55,17 @@
                     </tr>
 
                         {% for empresa in empresas %}
+                            {{forloop.counter}}
                             <tr class="tabela-linha" >
-                                <td>{{empresa.nome}}</td>
+                                <td>{{empresa.nome}} |{{forloop.counter|is_par}}</td>
                                 <td>{{empresa.endereco}}</td>
                                 <td>Nome da empresa</td>
                                 <td>Endereço da empresa</td>
                                 <td>
                                     <select class="form-select">       
-                                        <option></option>                    
+                                        {% for tech in empresa.tecnologias.all %}
+                                            <option>{{tech}}</option> 
+                                        {% endfor %}                   
                                     </select>
                                 </td>
                                 <td>
