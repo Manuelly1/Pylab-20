@@ -45,6 +45,7 @@ def nova_empresa(request):
                         endereco=endereco,
                         nicho_mercado=nicho,
                         caracteristica_empresa=caracteristicas)
+
         empresa.save()
         empresa.tecnologias.add(*tecnologias)
         empresa.save()
@@ -55,3 +56,7 @@ def nova_empresa(request):
 
         messages.add_message(request, constants.SUCCESS, 'Empresa cadastrada com sucesso')
         return redirect('/home/nova_empresa')
+
+
+def empresas(request):
+    return render(request, 'empresa.html')
