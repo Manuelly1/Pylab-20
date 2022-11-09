@@ -21,7 +21,7 @@
                     {% endfor %}
                 {% endif %}
                 <h2 class="titulo">Gerenciar empresas</h2>
-                <a class="btn-nova-empresa">Nova empresa</a>
+                <a href="{% url 'nova_empresa' %}" class="btn-nova-empresa">Nova empresa</a>
             </div>
             <div class="borda-box"></div>
             <div class="body-box">
@@ -56,8 +56,8 @@
 
                         {% for empresa in empresas %}
                             {{forloop.counter}}
-                            <tr class="tabela-linha" >
-                                <td>{{empresa.nome}} |{{forloop.counter|is_par}}</td>
+                            <tr {% if not forloop.counter|is_par %} class="tabela-linha"{% endif %}>
+                                <td>{{empresa.nome}}</td>
                                 <td>{{empresa.endereco}}</td>
                                 <td>Nome da empresa</td>
                                 <td>Endereço da empresa</td>
@@ -72,7 +72,7 @@
                                     Quantidade de vagas
                                 </td>
                                 <td>
-                                    <a class="btn-excluir">Excluir empresa</a>
+                                    <a href="{% url 'excluir_empresa' empresa.id %}" class="btn-excluir">Excluir empresa</a>
                                 </td>
                             </tr>
                         {% endfor %}
